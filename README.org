@@ -1,0 +1,46 @@
+#+title: README
+#+author: Sébastien Le Callonnec
+
+This project is a small example of Worker verticles running with
+Vert.x 3.5.2.  It simulates a small coffee shop processing orders from
+customers.  Customers send coffee orders to a HTTP endpoint, which are
+then sent to worker verticles which process the order for a random
+period of time, in effect behaving like blocking code.
+
+* Compiling
+
+  To compile the application, run the following with at least Java 8:
+
+#+BEGIN_SRC bash
+./mvnw package
+#+END_SRC
+
+* Running
+
+  To run the application:
+
+#+BEGIN_SRC bash
+java -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory -jar target/vertx-workers.jar
+#+END_SRC
+
+  The =Dvertx.logger-delegate-factory-class-name= system variable
+  ensures that SLF4j is used with logback so that logs contain more
+  details, in particular regarding threads running.
+
+  The application runs by default on the port 8085.
+
+  To test the application, you can use the ruby script present at the
+  root:
+
+#+BEGIN_SRC bash
+ruby process_messages.rb
+#+END_SRC
+
+  The script sends 2 batches of 10 random coffee orders to the HTTP
+  [[http://localhost:8085/coffee][http://localhost:8085/coffee]] endpoint.
+
+* License
+
+MIT License.
+
+© Copyright 2018 – Sébastien Le Callonnec
