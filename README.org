@@ -36,11 +36,11 @@ java -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDe
 ruby process_messages.rb
 #+END_SRC
 
-  The script sends 2 batches of 10 random coffee orders to the HTTP
+  The script sends 2 batches of 3 random coffee orders to the HTTP
   [[http://localhost:8085/coffee][http://localhost:8085/coffee]] endpoint.
 
 * License
 
-MIT License.
+Apache License, version 2.0.
 
 © Copyright 2018 – Sébastien Le Callonnec

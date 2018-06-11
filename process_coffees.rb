@@ -14,7 +14,7 @@ customers = ['aine', 'bernard', 'charline', 'denise', 'esteban', 'françois', 'g
 http = Net::HTTP.new(uri.host, uri.port)
 
 2.times do
-  10.times do
+  3.times do
 
     order = {
       customer: customers.sample,
