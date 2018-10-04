@@ -2,7 +2,7 @@
 #+author: Sébastien Le Callonnec
 
 This project is a small example of Worker verticles running with
-Vert.x 3.5.2.  It simulates a small coffee shop processing orders from
+Vert.x 3.5.4.  It simulates a small coffee shop processing orders from
 customers.  Customers send coffee orders to a HTTP endpoint, which are
 then sent to worker verticles which process the order for a random
 period of time, in effect behaving like blocking code.
