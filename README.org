@@ -9,7 +9,7 @@ period of time, in effect behaving like blocking code.
 
 * Compiling
 
-  To compile the application, run the following with at least Java 8:
+  To compile the application, run the following with Java 8:
 
 #+BEGIN_SRC bash
 ./mvnw package
@@ -43,4 +43,4 @@ ruby process_coffees.rb
 
 Apache License, version 2.0.
 
-© Copyright 2018,2021 – Sébastien Le Callonnec
+© Copyright 2018,2021,2022 – Sébastien Le Callonnec
