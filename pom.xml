@@ -23,22 +23,23 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-web</artifactId>
-      <version>3.5.4</version>
+      <version>3.9.4</version>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-lang-groovy</artifactId>
-      <version>3.5.4</version>
+      <version>3.9.4</version>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-config</artifactId>
-      <version>3.5.4</version>
+      <version>3.9.4</version>
     </dependency>
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-all</artifactId>
-      <version>2.4.12</version>
+      <version>3.0.19</version>
+      <type>pom</type>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -62,10 +63,11 @@
     <plugins>
       <plugin>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.4.1</version>
         <executions>
           <execution>
             <id>enforce-maven</id>
+            <phase>validate</phase>
             <goals>
               <goal>enforce</goal>
             </goals>
@@ -79,6 +81,7 @@
           </execution>
           <execution>
             <id>enforce-java</id>
+            <phase>validate</phase>
             <goals>
               <goal>enforce</goal>
             </goals>
@@ -110,12 +113,12 @@
           <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-eclipse-compiler</artifactId>
-            <version>2.9.2-01</version>
+            <version>3.7.0</version>
           </dependency>
           <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-eclipse-batch</artifactId>
-            <version>2.4.3-01</version>
+            <version>3.0.8-01</version>
           </dependency>
         </dependencies>
       </plugin>
