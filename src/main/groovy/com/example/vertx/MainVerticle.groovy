@@ -1,8 +1,7 @@
 package com.example.vertx
 
 import io.vertx.core.AbstractVerticle
-import io.vertx.core.Future
-import io.vertx.core.http.HttpMethod
+import io.vertx.core.Promise
 import io.vertx.core.json.Json
 import io.vertx.core.json.JsonObject
 import io.vertx.core.logging.LoggerFactory
@@ -14,7 +13,7 @@ class MainVerticle extends AbstractVerticle {
     def log = LoggerFactory.getLogger(this.class)
 
     @Override
-    void start(Future<Void> future) {
+    void start(Promise<Void> promise) {
         JsonObject config = config()
         int port = config.getInteger('http.port', 8085)
         log.info("Starting MainVerticle on port ${port}")
@@ -22,16 +21,14 @@ class MainVerticle extends AbstractVerticle {
         def server = vertx.createHttpServer()
         def router = Router.router(vertx)
         router.route().handler(BodyHandler.create())
-
-        def orderCoffeeRoute = router.post("/coffee")
-                .produces("application/json")
+        router.post("/coffee")
                 .handler(this.&processCoffeeOrder)
 
-        server.requestHandler(router.&accept).listen(port)
+        server.requestHandler(router).listen(port)
     }
 
     private void processCoffeeOrder(RoutingContext routingContext) {
-        def requestBody = routingContext.getBodyAsJson()
+        def requestBody = routingContext.body().asJsonObject()
         log.info("Processing request... ${requestBody}")
 
         def eb = vertx.eventBus()
@@ -39,9 +36,9 @@ class MainVerticle extends AbstractVerticle {
         def message = new JsonObject()
         def correlationId = UUID.randomUUID().toString()
         message.put('id', correlationId)
-        message.put('customer', requestBody.customer)
-        message.put('coffee', requestBody.coffee)
-        message.put('size', requestBody.size)
+        message.put('customer', requestBody['customer'])
+        message.put('coffee', requestBody['coffee'])
+        message.put('size', requestBody['size'])
 
         eb.send('process.coffee.order', message)
 

@@ -1,7 +1,7 @@
 package com.example.vertx
 
 import io.vertx.core.AbstractVerticle
-import io.vertx.core.Future
+import io.vertx.core.Promise
 import io.vertx.core.eventbus.EventBus
 import io.vertx.core.logging.LoggerFactory
 
@@ -10,7 +10,7 @@ class WorkerVerticle extends AbstractVerticle {
     def log = LoggerFactory.getLogger(this.class)
 
     @Override
-    void start(Future<Void> future) {
+    void start(Promise<Void> promise) {
         EventBus eb = vertx.eventBus()
         eb.consumer('process.coffee.order', { message ->
             def body = message.body()
